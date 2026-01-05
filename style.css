@@ -1,0 +1,64 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background: #f4f4f4;
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 20px;
+}
+
+#card {
+  background: white;
+  width: 90vw;
+  max-width: 600px;
+  height: 45vh;
+  margin: 30px auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+#card-text {
+  font-size: 26px;
+  padding: 20px;
+}
+
+#quiz-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#quiz-input input {
+  font-size: 20px;
+  padding: 12px;
+  width: 60%;
+}
+
+#quiz-input button {
+  font-size: 20px;
+  padding: 12px 20px;
+}
+
+.buttons button {
+  font-size: 20px;
+  padding: 14px 24px;
+}
+
+.hidden {
+  display: none;
+}
