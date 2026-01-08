@@ -1,5 +1,8 @@
 [
-  { "question": "What is 2 + 2?", "answer": "4" },
-  { "question": "Capital of France?", "answer": "Paris" },
-  { "question": "Bonjour means?", "answer": "Hello" }
+  { "question": "Where are protons located in an atom?", "answer": "nucleus" },
+  { "question": "What charge does an electron have?", "answer": "-1" },
+  { "question": "What determines the identity of an element?", "answer": "number of protons" },
+  { "question": "What is a mass number?", "answer": "protons plus neutrons" },
+  { "question": "How do isotopes differ?", "answer": "number of neutrons" },
+  { "question": "Why is average atomic mass not a whole number?", "answer": "weighted average" }
 ]

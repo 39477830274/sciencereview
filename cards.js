@@ -1,21 +1,19 @@
 let flashcards = [];
-let currentCard = 0;
-let showingAnswer = false;
-let quizMode = false;
+let current = 0;
 let score = 0;
 let time = 0;
+let mode = "flash";
+let testMode = false;
 
-const card = document.getElementById("card");
 const cardText = document.getElementById("card-text");
 const scoreEl = document.getElementById("score");
 const timeEl = document.getElementById("time");
-const quizInput = document.getElementById("quiz-input");
-const answerInput = document.getElementById("answerInput");
+const mcBox = document.getElementById("mc-choices");
 
 fetch("questions.json")
-  .then(res => res.json())
+  .then(r => r.json())
   .then(data => {
-    flashcards = shuffleArray(data);
+    flashcards = shuffle(data);
     showCard();
   });
 
@@ -24,69 +22,71 @@ setInterval(() => {
   timeEl.textContent = time;
 }, 1000);
 
-card.addEventListener("click", () => {
-  if (!quizMode) flipCard();
-});
-
-let touchStartX = 0;
-
-card.addEventListener("touchstart", e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-card.addEventListener("touchend", e => {
-  const diff = e.changedTouches[0].screenX - touchStartX;
-  if (Math.abs(diff) > 50) diff < 0 ? nextCard() : prevCard();
-});
-
 function showCard() {
-  showingAnswer = false;
-  cardText.textContent = flashcards[currentCard].question;
+  mcBox.classList.add("hidden");
+  cardText.textContent = flashcards[current].question;
+
+  if (mode === "mc") {
+    showMC();
+  }
 }
 
-function flipCard() {
-  cardText.textContent = showingAnswer
-    ? flashcards[currentCard].question
-    : flashcards[currentCard].answer;
-  showingAnswer = !showingAnswer;
-}
-
-function nextCard() {
-  currentCard = (currentCard + 1) % flashcards.length;
-  showCard();
-  resetInput();
-}
-
-function prevCard() {
-  currentCard = (currentCard - 1 + flashcards.length) % flashcards.length;
-  showCard();
-  resetInput();
-}
-
-function toggleMode() {
-  quizMode = !quizMode;
-  quizInput.classList.toggle("hidden");
+function toggleFlash() {
+  mode = "flash";
+  testMode = false;
   showCard();
 }
 
-function submitAnswer() {
-  const userAnswer = answerInput.value.trim().toLowerCase();
-  const correctAnswer = flashcards[currentCard].answer.toLowerCase();
+function toggleMC() {
+  mode = "mc";
+  testMode = false;
+  showCard();
+}
 
-  if (userAnswer === correctAnswer) {
+function startTest() {
+  mode = "mc";
+  testMode = true;
+  score = 0;
+  current = 0;
+  scoreEl.textContent = 0;
+  flashcards = shuffle(flashcards);
+  showCard();
+}
+
+function showMC() {
+  mcBox.innerHTML = "";
+  mcBox.classList.remove("hidden");
+
+  let answers = [flashcards[current].answer];
+  while (answers.length < 4) {
+    let rand = flashcards[Math.floor(Math.random() * flashcards.length)].answer;
+    if (!answers.includes(rand)) answers.push(rand);
+  }
+
+  shuffle(answers).forEach(ans => {
+    const btn = document.createElement("button");
+    btn.textContent = ans;
+    btn.onclick = () => checkAnswer(ans);
+    mcBox.appendChild(btn);
+  });
+}
+
+function checkAnswer(ans) {
+  if (ans === flashcards[current].answer) {
     score++;
     scoreEl.textContent = score;
-    nextCard();
-  } else {
-    cardText.textContent = "❌ Try again";
   }
-  resetInput();
+
+  if (testMode && current === flashcards.length - 1) {
+    cardText.textContent = `Test complete! Score: ${score}/${flashcards.length}`;
+    mcBox.classList.add("hidden");
+    return;
+  }
+
+  current = (current + 1) % flashcards.length;
+  showCard();
 }
 
-function resetInput() {
-  answerInput.value = "";
-}
-
-function shuffleArray(arr) {
+function shuffle(arr) {
   return arr.sort(() => Math.random() - 0.5);
 }

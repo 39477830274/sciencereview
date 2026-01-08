@@ -2,32 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Flashcard Review</title>
+  <title>Chemistry Flashcards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Flashcards</h1>
+<h1>Chemistry Review</h1>
 
-  <div class="info">
-    <p>⏱ <span id="time">0</span>s</p>
-    <p>✅ <span id="score">0</span></p>
-  </div>
+<div class="info">
+  <p>⏱ <span id="time">0</span>s</p>
+  <p>✅ <span id="score">0</span></p>
+</div>
 
-  <div id="card">
-    <p id="card-text">Loading...</p>
-  </div>
+<div id="card">
+  <p id="card-text">Loading...</p>
+</div>
 
-  <div id="quiz-input" class="hidden">
-    <input type="text" id="answerInput" placeholder="Type answer">
-    <button onclick="submitAnswer()">Submit</button>
-  </div>
+<div id="mc-choices" class="hidden"></div>
 
-  <div class="buttons">
-    <button onclick="toggleMode()">🎮 Mode</button>
-  </div>
+<div class="buttons">
+  <button onclick="toggleFlash()">Flashcards</button>
+  <button onclick="toggleMC()">Multiple Choice</button>
+  <button onclick="startTest()">Test Mode</button>
+</div>
 
-  <script src="cards.js"></script>
+<script src="cards.js"></script>
 </body>
 </html>
