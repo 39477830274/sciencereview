@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chemistry Flashcards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Chemistry Review</h1>
+
+<div class="info">
+  <p>⏱ <span id="time">0</span>s</p>
+  <p>✅ <span id="score">0</span></p>
+</div>
+
+<div id="card">
+  <p id="card-text">Loading...</p>
+</div>
+
+<div id="text-mode">
+  <input id="textAnswer" placeholder="Type your answer">
+  <button onclick="submitText()">Submit</button>
+</div>
+
+<div id="mc-choices" class="hidden"></div>
+
+<div class="buttons">
+  <button onclick="setMode('flash')">Flashcards</button>
+  <button onclick="setMode('text')">Text Quiz</button>
+  <button onclick="setMode('mc')">Multiple Choice</button>
+  <button onclick="startTest()">Test Mode</button>
+</div>
+
+<script src="cards.js"></script>
+</body>
+</html>

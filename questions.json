@@ -1,0 +1,12 @@
+[
+  { "question": "Where are protons located in an atom?", "answer": "nucleus" },
+  { "question": "What charge does a proton have?", "answer": "+1" },
+  { "question": "What is the mass of a neutron (amu)?", "answer": "1" },
+  { "question": "Where are electrons found?", "answer": "electron cloud" },
+  { "question": "What determines the identity of an element?", "answer": "number of protons" },
+  { "question": "What is a mass number?", "answer": "protons plus neutrons" },
+  { "question": "How do isotopes differ?", "answer": "number of neutrons" },
+  { "question": "Why is average atomic mass not a whole number?", "answer": "weighted average" },
+  { "question": "What unit is atomic mass measured in?", "answer": "amu" },
+  { "question": "Carbon-14 has how many neutrons?", "answer": "8" }
+]
